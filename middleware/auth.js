@@ -9,7 +9,6 @@ exports.checkToken = async (req, res, next) => {
             const token = req.headers['myToken']
             const { id, email, exp} = jwt.verify(token, process.env.DB_SECRET)
             res.locals.userData = await User.findOne({_id: id})
-            console.log(id, email, exp);
             next()
         } else {
             next()
